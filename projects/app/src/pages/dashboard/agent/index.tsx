@@ -127,7 +127,7 @@ const MyApps = ({ MenuIcon }: { MenuIcon: JSX.Element }) => {
               </Box>
             ) : (
               <Box color={'myGray.900'} fontSize={'20px'} fontWeight={'medium'}>
-                工作流应用与服务
+                工作流应用
               </Box>
             )}
             <Flex flex={1} />

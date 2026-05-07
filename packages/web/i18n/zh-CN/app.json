@@ -452,7 +452,7 @@
   "type.Import from json": "导入 JSON 配置",
   "type.Tool": "工具",
   "type.Workflow bot": "工作流",
-  "workflow_apps_and_services": "工作流应用与服务",
+  "workflow_apps_and_services": "工作流应用",
   "type.hidden": "隐藏应用",
   "type_http_tool_set_intro": "批量导入 API 工具",
   "type_mcp_intro": "连接 MCP 服务",

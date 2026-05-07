@@ -88,7 +88,7 @@ const FeiShuEditModal = ({
         <Flex p={8} h={['auto', '400px']} flexDirection="column" gap={6}>
           <Flex alignItems="center">
             <Box color="myGray.600">{t('publish:feishu_api')}</Box>
-            {feConfigs?.docUrl && (
+            {/* {feConfigs?.docUrl && (
               <Link
                 href={getDocPath('/docs/use-cases/external-integration/feishu/')}
                 target={'_blank'}
@@ -101,7 +101,7 @@ const FeiShuEditModal = ({
                   {t('common:read_doc')}
                 </Flex>
               </Link>
-            )}
+            )} */}
           </Flex>
           <Flex alignItems={'center'}>
             <FormLabel flex={'0 0 6.25rem'} required>

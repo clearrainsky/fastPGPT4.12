@@ -187,7 +187,7 @@ const WecomEditModal = ({
                   {t('publish:wecom.api')}
                 </Box>
                 <Flex>
-                  {feConfigs?.docUrl && (
+                  {/* {feConfigs?.docUrl && (
                     <Link
                       href={getDocPath('/docs/use-cases/external-integration/wecom')}
                       target={'_blank'}
@@ -200,7 +200,7 @@ const WecomEditModal = ({
                         {t('common:read_doc')}
                       </Flex>
                     </Link>
-                  )}
+                  )} */}
                 </Flex>
               </Flex>
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import MyModal from '@fastgpt/web/components/common/MyModal';
 import { useTranslation } from 'next-i18next';
-import { Box, Button, HStack, ModalBody, ModalFooter, VStack, Flex, Link } from '@chakra-ui/react';
+import { Box, Button, HStack, ModalBody, ModalFooter, VStack, Flex } from '@chakra-ui/react';
 import FileSelector, { type SelectFileItemType } from '@/components/Select/FileSelectorBox';
 import MyIcon from '@fastgpt/web/components/common/Icon';
 import MyIconButton from '@fastgpt/web/components/common/Icon/button';
@@ -9,7 +9,6 @@ import { postTemplateDatasetCollection } from '@/web/core/dataset/api/collection
 import { useRequest } from '@fastgpt/web/hooks/useRequest';
 import { DatasetPageContext } from '@/web/core/dataset/context/datasetPageContext';
 import { useContextSelector } from 'use-context-selector';
-import { getDocPath } from '@/web/common/system/doc';
 import { Trans } from 'next-i18next';
 
 const TemplateImportModal = ({
@@ -71,19 +70,8 @@ const TemplateImportModal = ({
     >
       <ModalBody py={6} px={8}>
         <VStack spacing={3} alignItems="stretch">
-          <Flex justify={'space-between'} align={'center'} fontSize={'sm'} fontWeight={500}>
+          <Flex align={'center'} fontSize={'sm'} fontWeight={500}>
             <Box color={'myGray.900'}>{t('dataset:upload_by_template_format')}</Box>
-            <Link
-              display={'flex'}
-              alignItems={'center'}
-              gap={0.5}
-              href={getDocPath('/docs/introduction/guide/knowledge_base/template/')}
-              color="primary.600"
-              target="_blank"
-            >
-              <MyIcon name={'book'} w={'18px'} />
-              {t('common:Instructions')}
-            </Link>
           </Flex>
 
           <Button

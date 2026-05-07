@@ -95,7 +95,7 @@ const NodeTemplateListHeader = ({
               // },
               {
                 icon: 'core/chat/sidebar/star',
-                label: '工作流应用与服务',
+                label: '工作流应用',
                 value: TemplateTypeEnum.agent
               }
             ]}

@@ -72,7 +72,7 @@ const DingTalk = ({ appId }: { appId: string }) => {
           <Box fontWeight={'bold'} fontSize={['md', 'lg']}>
             {t('publish:dingtalk.title')}
           </Box>
-          {feConfigs?.docUrl && (
+          {/* {feConfigs?.docUrl && (
             <Link
               href={getDocPath('/docs/use-cases/external-integration/dingtalk/')}
               target={'_blank'}
@@ -84,7 +84,7 @@ const DingTalk = ({ appId }: { appId: string }) => {
                 {t('common:read_doc')}
               </Flex>
             </Link>
-          )}
+          )} */}
         </HStack>
         <Button
           variant={'primary'}

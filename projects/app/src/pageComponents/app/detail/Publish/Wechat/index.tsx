@@ -70,7 +70,7 @@ const Wechat = ({ appId }: { appId: string }) => {
           <Box fontWeight={'bold'} fontSize={['md', 'lg']}>
             {t('publish:wechat.title')}
           </Box>
-          {feConfigs?.docUrl && (
+          {/* {feConfigs?.docUrl && (
             <Link
               href={getDocPath('/docs/use-cases/external-integration/wechat')}
               target={'_blank'}
@@ -83,7 +83,7 @@ const Wechat = ({ appId }: { appId: string }) => {
                 {t('common:read_doc')}
               </Flex>
             </Link>
-          )}
+          )} */}
         </Flex>
         <Button
           variant={'primary'}

@@ -43,3 +43,18 @@ projects/app/worker/
 
 # Agent
 .codex
+.claude
+.idea
+
+.worktrees/
+
+.vscode
+.idea
+deploy/prod/*.tar
+.script
+.deploy/*
+# Local build/deploy artifacts
+*.tar
+*.tar.gz
+__pycache__/
+*.pyc

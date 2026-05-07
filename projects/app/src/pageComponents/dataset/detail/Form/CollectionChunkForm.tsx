@@ -294,7 +294,7 @@ const CollectionChunkForm = ({ form }: { form: UseFormReturn<CollectionChunkForm
             </Checkbox>
             <QuestionTip label={t('dataset:index_prefix_title_tips')} />
           </HStack>
-          {trainingType === DatasetCollectionDataProcessModeEnum.chunk &&
+          {/* {trainingType === DatasetCollectionDataProcessModeEnum.chunk &&
             feConfigs?.show_dataset_enhance !== false && (
               <>
                 <HStack flex={'1'} spacing={1}>
@@ -330,7 +330,7 @@ const CollectionChunkForm = ({ form }: { form: UseFormReturn<CollectionChunkForm
                   <QuestionTip label={t('dataset:image_auto_parse_tips')} />
                 </HStack>
               </>
-            )}
+            )} */}
         </Grid>
       </Box>
       <Box mt={6}>

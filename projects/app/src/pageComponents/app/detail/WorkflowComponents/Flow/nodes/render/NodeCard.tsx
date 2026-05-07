@@ -931,7 +931,7 @@ const NodeActionButtons = React.memo<{
       );
     }
 
-    if (courseUrl || nodeTemplate?.userGuide) {
+    if (false) {
       result.push(
         <UseGuideModal
           key="userGuide"

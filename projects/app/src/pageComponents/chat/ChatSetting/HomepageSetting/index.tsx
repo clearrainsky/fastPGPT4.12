@@ -31,6 +31,7 @@ import {
 import { useSystem } from '@fastgpt/web/hooks/useSystem';
 import dynamic from 'next/dynamic';
 import type { ChatSettingType } from '@fastgpt/global/core/chat/setting/type';
+import { DEFAULT_SYSTEM_TITLE } from '@/web/common/system/constants';
 
 const AddQuickAppModal = dynamic(
   () => import('@/pageComponents/chat/ChatSetting/HomepageSetting/AddQuickAppModal')
@@ -55,7 +56,7 @@ const HomepageSetting = ({ Header, onDiagramShow }: Props) => {
         enableHome: data?.enableHome,
         slogan: data?.slogan || t('chat:setting.home.slogan.default'),
         dialogTips: data?.dialogTips || t('chat:setting.home.dialogue_tips.default'),
-        homeTabTitle: data?.homeTabTitle || 'FastGPT',
+        homeTabTitle: data?.homeTabTitle || feConfigs?.systemTitle || DEFAULT_SYSTEM_TITLE,
         selectedTools: data?.selectedTools || [],
         wideLogoUrl: data?.wideLogoUrl,
         squareLogoUrl: data?.squareLogoUrl,

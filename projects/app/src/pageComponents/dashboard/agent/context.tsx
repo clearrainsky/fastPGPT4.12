@@ -15,6 +15,7 @@ import dynamic from 'next/dynamic';
 import { AppTypeEnum } from '@fastgpt/global/core/app/constants';
 import { useSystemStore } from '@/web/common/system/useSystemStore';
 import { useTranslation } from 'next-i18next';
+import { chatTeamVisibleAppTypes } from '@/pageComponents/chat/ChatTeamApp/utils';
 const MoveModal = dynamic(() => import('@/components/common/folder/MoveModal'));
 
 type AppListContextType = {
@@ -75,13 +76,7 @@ const AppListContextProvider = ({ children }: { children: ReactNode }) => {
       const formatType = (() => {
         // chat page show all apps
         if (router.pathname.includes('/chat')) {
-          return [
-            AppTypeEnum.folder,
-            AppTypeEnum.toolFolder,
-            AppTypeEnum.simple,
-            AppTypeEnum.workflow,
-            AppTypeEnum.workflowTool
-          ];
+          return [...chatTeamVisibleAppTypes];
         }
 
         // agent page

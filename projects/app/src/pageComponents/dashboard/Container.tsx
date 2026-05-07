@@ -127,7 +127,7 @@ const DashboardContainer = ({
           //   typeName: t('app:type.Chat_Agent_v2')
           // }
         ]
-      },
+      }
       // ...(feConfigs?.show_skill
       //   ? [
       //       {
@@ -202,12 +202,12 @@ const DashboardContainer = ({
       //       : [])
       //   ]
       // },
-      {
-        groupId: TabEnum.mcp_server,
-        groupAvatar: 'mcp',
-        groupName: t('common:mcp_server'),
-        children: []
-      }
+      // {
+      //   groupId: TabEnum.mcp_server,
+      //   groupAvatar: 'mcp',
+      //   groupName: t('common:mcp_server'),
+      //   children: []
+      // }
       // ...(feConfigs?.isPlus
       //   ? [
       //       {

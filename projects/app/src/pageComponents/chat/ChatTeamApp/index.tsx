@@ -17,6 +17,8 @@ import { ChatPageContext } from '@/web/core/chat/context/chatPageContext';
 import ChatSliderMobileDrawer from '@/pageComponents/chat/slider/ChatSliderMobileDrawer';
 import { useSystemStore } from '@/web/common/system/useSystemStore';
 import { getWebReqUrl } from '@fastgpt/web/common/system/utils';
+import { DEFAULT_SYSTEM_TITLE } from '@/web/common/system/constants';
+import { chatTeamAppTabs } from './utils';
 
 const MyApps = () => {
   const { t } = useTranslation();
@@ -51,11 +53,14 @@ const MyApps = () => {
   );
 
   const [appType, setAppType] = useState<AppTypeEnum | 'all'>('all');
-  const tabs = ['all' as const, AppTypeEnum.simple, AppTypeEnum.workflow, AppTypeEnum.workflowTool];
+  const tabs = chatTeamAppTabs;
 
   return (
     <Flex flexDirection={'column'} h={'100%'}>
-      <NextHead title={chatSettings?.homeTabTitle} icon={getWebReqUrl(feConfigs?.favicon)} />
+      <NextHead
+        title={chatSettings?.homeTabTitle || feConfigs?.systemTitle || DEFAULT_SYSTEM_TITLE}
+        icon={getWebReqUrl(feConfigs?.favicon)}
+      />
 
       {!isPc && (
         <Flex

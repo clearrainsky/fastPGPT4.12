@@ -30,6 +30,7 @@ import {
 } from '@/pageComponents/chat/constants';
 import { useChatStore } from '@/web/core/chat/context/useChatStore';
 import type { ChatSettingType } from '@fastgpt/global/core/chat/setting/type';
+import { DEFAULT_SYSTEM_TITLE } from '@/web/common/system/constants';
 
 import { ChatTypeEnum } from '@/components/core/chat/ChatContainer/ChatBox/constants';
 
@@ -86,7 +87,7 @@ const ChatHeader = ({
           appId={chatData.appId}
           name={
             pane === ChatSidebarPaneEnum.HOME && !isShare
-              ? chatSettings?.homeTabTitle || 'FastGPT'
+              ? chatSettings?.homeTabTitle || DEFAULT_SYSTEM_TITLE
               : chatData.app.name
           }
           avatar={

@@ -344,14 +344,14 @@ const List = () => {
                               label: t('common:move_to'),
                               onClick: () => setMoveSkillId(skill._id)
                             },
-                            {
-                              icon: 'key',
-                              type: 'grayBg' as const,
-                              label: t('skill:permission_settings'),
-                              onClick: () => {
-                                setEditPerSkillId(skill._id);
-                              }
-                            },
+                            // {
+                            //   icon: 'key',
+                            //   type: 'grayBg' as const,
+                            //   label: t('skill:permission_settings'),
+                            //   onClick: () => {
+                            //     setEditPerSkillId(skill._id);
+                            //   }
+                            // },
                             // skill 专属菜单项
                             ...(!isFolder
                               ? [

@@ -73,7 +73,7 @@ const OffiAccount = ({ appId }: { appId: string }) => {
             {t('publish:official_account.name')}
           </Box>
 
-          {feConfigs?.docUrl && (
+          {/* {feConfigs?.docUrl && (
             <Link
               href={getDocPath('/docs/use-cases/external-integration/official_account')}
               target={'_blank'}
@@ -86,7 +86,7 @@ const OffiAccount = ({ appId }: { appId: string }) => {
                 {t('common:read_doc')}
               </Flex>
             </Link>
-          )}
+          )} */}
         </HStack>
         <Button
           variant={'primary'}

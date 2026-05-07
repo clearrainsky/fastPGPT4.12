@@ -33,6 +33,7 @@ describe('create dataset', () => {
     });
     expect(res.error).toBeUndefined();
     expect(res.code).toBe(200);
+    expect(res.data).toMatch(/^sk-/);
 
     await MongoResourcePermission.create({
       resourceType: 'app',
@@ -60,5 +61,6 @@ describe('create dataset', () => {
     });
     expect(res2.error).toBeUndefined();
     expect(res2.code).toBe(200);
+    expect(res2.data).toMatch(/^sk-/);
   });
 });

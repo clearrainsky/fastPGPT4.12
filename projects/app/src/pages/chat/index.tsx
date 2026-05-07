@@ -26,6 +26,7 @@ import { MongoOutLink } from '@fastgpt/service/support/outLink/schema';
 import { getLogger, LogCategories } from '@fastgpt/service/common/logger';
 import { PublishChannelEnum } from '@fastgpt/global/support/outLink/constant';
 import type { LoginSuccessResponseType } from '@fastgpt/global/openapi/support/user/account/login/api';
+import { DEFAULT_SYSTEM_TITLE } from '@/web/common/system/constants';
 
 const logger = getLogger(LogCategories.MODULE.CHAT.ITEM);
 
@@ -131,7 +132,10 @@ const ChatContent = (props: ChatPageProps) => {
   if (!isInitedUser) {
     return (
       <PageContainer isLoading flex={'1'} p={4}>
-        <NextHead title={feConfigs?.systemTitle} icon={feConfigs?.favicon} />
+        <NextHead
+          title={feConfigs?.systemTitle || DEFAULT_SYSTEM_TITLE}
+          icon={feConfigs?.favicon}
+        />
       </PageContainer>
     );
   }
@@ -140,7 +144,7 @@ const ChatContent = (props: ChatPageProps) => {
   if (!userInfo) {
     return (
       <>
-        <NextHead title={feConfigs?.systemTitle}></NextHead>
+        <NextHead title={feConfigs?.systemTitle || DEFAULT_SYSTEM_TITLE}></NextHead>
 
         <LoginModal onSuccess={loginSuccess} />
       </>

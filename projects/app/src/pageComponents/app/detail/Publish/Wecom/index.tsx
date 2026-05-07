@@ -73,7 +73,7 @@ const Wecom = ({ appId }: { appId: string }) => {
           <Box fontWeight={'bold'} fontSize={['md', 'lg']}>
             {t('publish:wecom.title')}
           </Box>
-          {feConfigs?.docUrl && (
+          {/* {feConfigs?.docUrl && (
             <Link
               href={getDocPath('/docs/use-cases/external-integration/wecom')}
               target={'_blank'}
@@ -86,7 +86,7 @@ const Wecom = ({ appId }: { appId: string }) => {
                 {t('common:read_doc')}
               </Flex>
             </Link>
-          )}
+          )} */}
         </Flex>
         <Flex gap={3}>
           {feConfigs.customDomain?.enable && (

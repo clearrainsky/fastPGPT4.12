@@ -6,6 +6,7 @@ import { createRelativeLink } from 'fumadocs-ui/mdx';
 import { getMDXComponents } from '@/mdx-components';
 import { i18n } from '@/lib/i18n';
 import { generateArticleSchema, generateBreadcrumbSchema } from '@/lib/schema';
+import { getDocsDomain, getDocsSiteName } from '@/lib/branding';
 
 // 在构建时导入静态数据
 import docLastModifiedData from '@/data/doc-last-modified.json';
@@ -37,18 +38,19 @@ export default async function Page({
   // @ts-ignore
   const lastModified = docLastModifiedData[filePath] || page.data.lastModified;
 
-  const homeDomain = process.env.FASTGPT_HOME_DOMAIN ?? 'https://fastgpt.io';
-  const domain = homeDomain.replace('https://', 'https://doc.');
-  const url = `${domain}${page.url}`;
+  const siteName = getDocsSiteName(process.env.DOCS_SITE_NAME);
+  const domain = getDocsDomain(process.env.FASTGPT_HOME_DOMAIN);
+  const url = domain ? `${domain}${page.url}` : page.url;
 
   // 生成面包屑导航
   const breadcrumbItems = [
-    { name: 'FastGPT', url: domain },
-    { name: 'Docs', url: `${domain}/${lang}/docs` }
+    { name: siteName, url: domain || '/' },
+    { name: 'Docs', url: domain ? `${domain}/${lang}/docs` : `/${lang}/docs` }
   ];
   if (slug && slug.length > 0) {
     slug.forEach((segment, index) => {
-      const segmentUrl = `${domain}/${lang}/docs/${slug.slice(0, index + 1).join('/')}`;
+      const segmentPath = `/${lang}/docs/${slug.slice(0, index + 1).join('/')}`;
+      const segmentUrl = domain ? `${domain}${segmentPath}` : segmentPath;
       breadcrumbItems.push({ name: segment, url: segmentUrl });
     });
   }
@@ -82,12 +84,6 @@ export default async function Page({
       tableOfContent={{
         style: 'clerk'
       }}
-      editOnGithub={{
-        owner: 'labring',
-        repo: 'FastGPT',
-        sha: 'main',
-        path: `document/content/docs/${page.file.path}`
-      }}
       lastUpdate={lastModified ? new Date(lastModified) : undefined}
     >
       <DocsTitle>{page.data.title}</DocsTitle>
@@ -115,9 +111,9 @@ export async function generateMetadata(props: {
   const page = source.getPage(slug, lang);
   if (!page || !page.data) notFound();
 
-  const homeDomain = process.env.FASTGPT_HOME_DOMAIN ?? 'https://fastgpt.io';
-  const domain = homeDomain.replace('https://', 'https://doc.');
-  const url = `${domain}${page.url}`;
+  const siteName = getDocsSiteName(process.env.DOCS_SITE_NAME);
+  const domain = getDocsDomain(process.env.FASTGPT_HOME_DOMAIN);
+  const url = domain ? `${domain}${page.url}` : page.url;
 
   // 构建多语言 alternates
   const languages: Record<string, string> = {};
@@ -136,10 +132,10 @@ export async function generateMetadata(props: {
       languages
     },
     openGraph: {
-      title: `${page.data.title} | FastGPT`,
+      title: `${page.data.title} | ${siteName}`,
       description: page.data.description,
       url,
-      siteName: 'FastGPT',
+      siteName,
       locale: lang,
       type: 'article'
     }

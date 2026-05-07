@@ -1,6 +1,5 @@
 import { initHttpAgent } from '@fastgpt/service/common/middle/httpAgent';
 import fs, { existsSync } from 'fs';
-import type { FastGPTFeConfigsType } from '@fastgpt/global/common/system/types/index';
 import type { FastGPTConfigFileType } from '@fastgpt/global/common/system/types/index';
 import { getFastGPTConfigFromDB } from '@fastgpt/service/common/system/config/controller';
 import { isProduction } from '@fastgpt/global/common/system/constants';
@@ -24,6 +23,7 @@ import { getSystemToolTags } from '@fastgpt/service/core/app/tool/api';
 import { isProVersion } from '@fastgpt/service/common/system/constants';
 import { getLogger, LogCategories } from '@fastgpt/service/common/logger';
 import { env } from '@fastgpt/service/env';
+import { mergeFeConfigs } from './feConfigs';
 
 const logger = getLogger(LogCategories.SYSTEM);
 
@@ -111,29 +111,6 @@ export async function getInitConfig() {
   await Promise.all([initSystemConfig(), getSystemVersion()]);
 }
 
-const defaultFeConfigs: FastGPTFeConfigsType = {
-  show_emptyChat: true,
-  show_git: true,
-  docUrl: 'https://doc.fastgpt.io',
-  openAPIDocUrl: 'https://doc.fastgpt.io/docs/openapi/intro',
-  submitPluginRequestUrl: 'https://github.com/labring/fastgpt-plugin/issues',
-  appTemplateCourse:
-    'https://fael3z0zfze.feishu.cn/wiki/CX9wwMGyEi5TL6koiLYcg7U0nWb?fromScene=spaceOverview',
-  systemTitle: 'FastGPT',
-  concatMd:
-    '项目开源地址: [FastGPT GitHub](https://github.com/labring/FastGPT)\n交流群: ![](https://oss.laf.run/otnvvf-imgs/fastgpt-feishu1.png)',
-  limit: {
-    exportDatasetLimitMinutes: 0,
-    websiteSyncLimitMinuted: 0,
-    workflowParallelRunMaxConcurrency: env.WORKFLOW_PARALLEL_MAX_CONCURRENCY
-  },
-  scripts: [],
-  favicon: '/favicon.ico',
-  chineseRedirectUrl: process.env.CHINESE_IP_REDIRECT_URL || '',
-  uploadFileMaxSize: Number(process.env.UPLOAD_FILE_MAX_SIZE || 1000),
-  uploadFileMaxAmount: Number(process.env.UPLOAD_FILE_MAX_AMOUNT || 1000)
-};
-
 export async function initSystemConfig() {
   // load config
   const [{ fastgptConfig, licenseData }, fileConfig] = await Promise.all([
@@ -147,14 +124,10 @@ export async function initSystemConfig() {
   // get config from database
   const config: FastGPTConfigFileType = {
     feConfigs: {
-      ...fileRes?.feConfigs,
-      ...defaultFeConfigs,
-      ...(fastgptConfig.feConfigs || {}),
-      limit: {
-        ...fileRes?.feConfigs?.limit,
-        ...defaultFeConfigs.limit,
-        ...(fastgptConfig.feConfigs?.limit || {})
-      },
+      ...mergeFeConfigs({
+        fileFeConfigs: fileRes?.feConfigs,
+        dbFeConfigs: fastgptConfig.feConfigs
+      }),
       isPlus: !!licenseData,
       hideChatCopyrightSetting: process.env.HIDE_CHAT_COPYRIGHT_SETTING === 'true',
       show_aiproxy: !!process.env.AIPROXY_API_ENDPOINT,

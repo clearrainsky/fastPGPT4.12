@@ -94,7 +94,7 @@ const OffiAccountEditModal = ({
         <Flex p={8} minH={['auto', '400px']} flexDirection="column" gap={6}>
           <Flex alignItems="center">
             <Box color="myGray.600">{t('publish:official_account.params')}</Box>
-            {feConfigs?.docUrl && (
+            {/* {feConfigs?.docUrl && (
               <Link
                 href={getDocPath('/docs/use-cases/external-integration/official_account/')}
                 target={'_blank'}
@@ -107,7 +107,7 @@ const OffiAccountEditModal = ({
                   {t('common:read_doc')}
                 </Flex>
               </Link>
-            )}
+            )} */}
           </Flex>
           <Flex alignItems={'center'}>
             <FormLabel flex={'0 0 6.25rem'} required>

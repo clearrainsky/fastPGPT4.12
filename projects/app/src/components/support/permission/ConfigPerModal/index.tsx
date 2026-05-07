@@ -55,12 +55,12 @@ const ConfigPerModal = ({
             <Avatar src={avatar} w={'1.75rem'} borderRadius={'md'} />
             <Box>{name}</Box>
           </HStack>
-          {!isInheritPermission && (
+          {/* {!isInheritPermission && (
             <Box mt={3}>
               <ResumeInherit onResume={resumeInheritPermission} />
             </Box>
-          )}
-          <Box mt={4}>
+          )} */}
+          {/* <Box mt={4}>
             <CollaboratorContextProvider
               {...managePer}
               refetchResource={refetchResource}
@@ -91,8 +91,8 @@ const ConfigPerModal = ({
                 );
               }}
             </CollaboratorContextProvider>
-          </Box>
-          {onChangeOwner && (
+          </Box> */}
+          {/* {onChangeOwner && (
             <Box mt={4}>
               <Button
                 size="md"
@@ -105,17 +105,17 @@ const ConfigPerModal = ({
                 {t('common:permission.change_owner')}
               </Button>
             </Box>
-          )}
+          )} */}
         </ModalBody>
       </MyModal>
-      {isChangeOwnerModalOpen && onChangeOwner && (
+      {/* {isChangeOwnerModalOpen && onChangeOwner && (
         <ChangeOwnerModal
           onClose={onCloseChangeOwnerModal}
           avatar={avatar}
           name={name}
           onChangeOwner={onChangeOwner}
         />
-      )}
+      )} */}
     </>
   );
 };

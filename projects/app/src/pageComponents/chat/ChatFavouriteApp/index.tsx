@@ -32,6 +32,7 @@ import EmptyTip from '@fastgpt/web/components/common/EmptyTip';
 import { useSystemStore } from '@/web/common/system/useSystemStore';
 import { getWebReqUrl } from '@fastgpt/web/common/system/utils';
 import { useUserStore } from '@/web/support/user/useUserStore';
+import { DEFAULT_SYSTEM_TITLE } from '@/web/common/system/constants';
 
 const ChatFavouriteApp = () => {
   const { isPc } = useSystem();
@@ -115,7 +116,10 @@ const ChatFavouriteApp = () => {
 
   return (
     <MyBox isLoading={isSearching} display="flex" flexDirection={'column'} h={'100%'}>
-      <NextHead title={homeTabTitle} icon={getWebReqUrl(feConfigs?.favicon)} />
+      <NextHead
+        title={homeTabTitle || feConfigs?.systemTitle || DEFAULT_SYSTEM_TITLE}
+        icon={getWebReqUrl(feConfigs?.favicon)}
+      />
 
       {!isPc && (
         <Flex

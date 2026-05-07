@@ -7,10 +7,6 @@ import '@/app/global.css';
 import { CustomSidebarComponents } from '@/components/sideBar';
 import { SidebarKeepOpen } from '@/components/sidebarKeepOpen';
 import { SidebarScrollFix } from '@/components/sidebarScrollFix';
-import FeishuLogoLight from '@/components/docs/feishuLogoLIght';
-import FeishuLogoDark from '@/components/docs/feishuLogoDark';
-import GithubLogoLight from '@/components/docs/githubLogoLight';
-import GithubLogoDark from '@/components/docs/githubLogoDark';
 import { BookOpen, Code, Lightbulb, CircleHelp, Server } from 'lucide-react';
 
 export default async function Layout({
@@ -65,20 +61,7 @@ export default async function Layout({
         collapsible: false,
         components: CustomSidebarComponents
       }}
-      links={[
-        {
-          type: 'icon',
-          icon: <FeishuLogoLight className="block dark:hidden size-5" />,
-          url: 'https://oss.laf.run/otnvvf-imgs/fastgpt-feishu1.png',
-          text: '飞书群'
-        },
-        {
-          type: 'icon',
-          icon: <GithubLogoLight className="block dark:hidden size-5" />,
-          url: 'https://github.com/labring/FastGPT',
-          text: 'github'
-        }
-      ]}
+      links={[]}
     >
       <SidebarKeepOpen tabUrls={tabUrls} />
       <SidebarScrollFix />

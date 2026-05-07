@@ -33,6 +33,7 @@ import { useCopyData } from '@fastgpt/web/hooks/useCopyData';
 import { useSystemStore } from '@/web/common/system/useSystemStore';
 import { getDocPath } from '@/web/common/system/doc';
 import { useMemoEnhance } from '@fastgpt/web/hooks/useMemoEnhance';
+import { getMarketplaceUrl } from '@/web/common/system/branding';
 
 // Custom hook for managing URL search params
 const useSearchParams = () => {
@@ -410,17 +411,19 @@ const ToolkitMarketplace = ({ marketplaceUrl }: { marketplaceUrl: string }) => {
             <Box mt={4} fontSize={'sm'} textAlign={'center'}>
               {t('app:plugin_offline_tips')}
             </Box>
-            <Flex fontSize={'sm'} alignItems={'center'} mt={4}>
-              {t('app:plugin_offline_url')}：{marketplaceUrl.replace('https://', '')}
-              <Button
-                variant={'whiteBase'}
-                size={'xs'}
-                ml={6}
-                onClick={() => copyData(marketplaceUrl)}
-              >
-                {t('common:Copy')}
-              </Button>
-            </Flex>
+            {marketplaceUrl && (
+              <Flex fontSize={'sm'} alignItems={'center'} mt={4}>
+                {t('app:plugin_offline_url')}：{marketplaceUrl.replace('https://', '')}
+                <Button
+                  variant={'whiteBase'}
+                  size={'xs'}
+                  ml={6}
+                  onClick={() => copyData(marketplaceUrl)}
+                >
+                  {t('common:Copy')}
+                </Button>
+              </Flex>
+            )}
           </VStack>
         </MyBox>
       </Box>
@@ -603,7 +606,7 @@ const ToolkitMarketplace = ({ marketplaceUrl }: { marketplaceUrl: string }) => {
                 WebkitTextFillColor: 'transparent'
               }}
             >
-              Assets for FastGPT
+              Plugin Assets
             </Box>
             <Box fontSize={'45px'} fontWeight={'semibold'} color={'black'}>
               {t('app:toolkit_marketplace_title')}
@@ -752,7 +755,7 @@ export async function getServerSideProps(content: any) {
   return {
     props: {
       ...(await serviceSideProps(content, ['app'])),
-      marketplaceUrl: process.env.MARKETPLACE_URL || 'https://marketplace.fastgpt.cn'
+      marketplaceUrl: getMarketplaceUrl(process.env.MARKETPLACE_URL)
     }
   };
 }

@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
 import { useContextSelector } from 'use-context-selector';
 import { AppTypeEnum } from '@fastgpt/global/core/app/constants';
-import { canAppTypePublish } from '@fastgpt/global/core/app/utils';
 
 const RouteTab = () => {
   const { t } = useTranslation();
@@ -37,7 +36,7 @@ const RouteTab = () => {
             }
           ]
         : []),
-      ...(appDetail.permission.hasManagePer && canAppTypePublish(appDetail.type)
+      ...(appDetail.permission.hasManagePer
         ? [
             {
               label: t('app:publish_channel'),

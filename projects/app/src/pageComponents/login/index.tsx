@@ -20,6 +20,7 @@ import LoginForm from '@/pageComponents/login/LoginForm/LoginForm';
 import { GET } from '@/web/common/api/request';
 import { getDocPath } from '@/web/common/system/doc';
 import type { LoginSuccessResponseType } from '@fastgpt/global/openapi/support/user/account/login/api';
+import { validateRedirectUrl } from '@/web/common/utils/uri';
 
 const RegisterForm = dynamic(() => import('@/pageComponents/login/RegisterForm'));
 const ForgetPasswordForm = dynamic(() => import('@/pageComponents/login/ForgetPasswordForm'));
@@ -94,6 +95,10 @@ const ChineseRedirectModal = () => {
   const { t } = useTranslation();
   const { feConfigs } = useSystemStore();
   const chineseRedirectUrl = feConfigs?.chineseRedirectUrl;
+  const safeChineseRedirectUrl = useMemo(
+    () => (chineseRedirectUrl ? validateRedirectUrl(chineseRedirectUrl, '') : ''),
+    [chineseRedirectUrl]
+  );
 
   const [isOpen, setIsOpen] = useState(false);
 
@@ -122,14 +127,14 @@ const ChineseRedirectModal = () => {
 
   useEffect(() => {
     // Only check IP if redirect URL is provided and user hasn't disabled it
-    if (chineseRedirectUrl && showRedirect) {
+    if (safeChineseRedirectUrl && showRedirect) {
       checkIpInChina();
     }
-  }, [chineseRedirectUrl, showRedirect, checkIpInChina]);
+  }, [safeChineseRedirectUrl, showRedirect, checkIpInChina]);
 
   const handleRedirect = () => {
-    if (chineseRedirectUrl) {
-      window.open(chineseRedirectUrl, '_self');
+    if (safeChineseRedirectUrl) {
+      window.open(safeChineseRedirectUrl, '_self');
     }
   };
 
@@ -143,7 +148,7 @@ const ChineseRedirectModal = () => {
   };
 
   // Don't render if no redirect URL provided or not open
-  if (!chineseRedirectUrl || !isOpen) {
+  if (!safeChineseRedirectUrl || !isOpen) {
     return null;
   }
 

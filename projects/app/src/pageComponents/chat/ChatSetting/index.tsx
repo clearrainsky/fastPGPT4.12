@@ -17,6 +17,7 @@ import { useSystemStore } from '@/web/common/system/useSystemStore';
 import { useRouter } from 'next/router';
 import { useUserStore } from '@/web/support/user/useUserStore';
 import { getWebReqUrl } from '@fastgpt/web/common/system/utils';
+import { DEFAULT_SYSTEM_TITLE } from '@/web/common/system/constants';
 
 const HomepageSetting = dynamic(() => import('@/pageComponents/chat/ChatSetting/HomepageSetting'));
 const LogDetails = dynamic(() => import('@/pageComponents/chat/ChatSetting/LogDetails'));
@@ -70,7 +71,10 @@ const ChatSetting = () => {
 
   return (
     <>
-      <NextHead title={chatSettings?.homeTabTitle} icon={getWebReqUrl(feConfigs?.favicon)} />
+      <NextHead
+        title={chatSettings?.homeTabTitle || feConfigs?.systemTitle || DEFAULT_SYSTEM_TITLE}
+        icon={getWebReqUrl(feConfigs?.favicon)}
+      />
 
       <Flex flexDir="column" h="100%">
         {!isPc && (

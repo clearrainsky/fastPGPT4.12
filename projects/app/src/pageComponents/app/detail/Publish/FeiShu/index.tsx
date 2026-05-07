@@ -71,7 +71,7 @@ const FeiShu = ({ appId }: { appId: string }) => {
           <Box fontWeight={'bold'} fontSize={['md', 'lg']}>
             {t('common:core.app.publish.Fei shu bot publish')}
           </Box>
-          {feConfigs?.docUrl && (
+          {/* {feConfigs?.docUrl && (
             <Link
               href={getDocPath('/docs/use-cases/external-integration/feishu')}
               target={'_blank'}
@@ -83,7 +83,7 @@ const FeiShu = ({ appId }: { appId: string }) => {
                 {t('common:read_doc')}
               </Flex>
             </Link>
-          )}
+          )} */}
         </HStack>
         <Button
           variant={'primary'}

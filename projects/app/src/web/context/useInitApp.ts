@@ -18,6 +18,7 @@ import {
 } from '../support/marketing/utils';
 import { type ShortUrlParams } from '@fastgpt/global/support/marketing/type';
 import { setCouponCode } from '@/web/support/marketing/utils';
+import { DEFAULT_SYSTEM_TITLE } from '../common/system/constants';
 
 type MarketingQueryParams = {
   hiId?: string;
@@ -65,7 +66,7 @@ export const useInitApp = () => {
   const { loadGitStar, setInitd, feConfigs } = useSystemStore();
   const { userInfo } = useUserStore();
   const [scripts, setScripts] = useState<FastGPTFeConfigsType['scripts']>([]);
-  const defaultTitle = process.env.SYSTEM_NAME || '智能体应用管理平台';
+  const defaultTitle = DEFAULT_SYSTEM_TITLE;
   const [title, setTitle] = useState(defaultTitle);
 
   const getPathWithoutMarketingParams = () => {

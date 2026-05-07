@@ -39,6 +39,7 @@ import { useConfirm } from '@fastgpt/web/hooks/useConfirm';
 import FormLabel from '@fastgpt/web/components/common/MyBox/FormLabel';
 import QuestionTip from '@fastgpt/web/components/common/MyTooltip/QuestionTip';
 import MyBox from '@fastgpt/web/components/common/MyBox';
+import { getApiBaseUrl } from '@/web/common/system/branding';
 
 type EditProps = EditApiKeyProps & { _id?: string };
 const defaultEditData: EditProps = {
@@ -53,7 +54,7 @@ const ApiKeyTable = ({ tips, appId }: { tips: string; appId?: string }) => {
   const theme = useTheme();
   const { copyData } = useCopyData();
   const { feConfigs } = useSystemStore();
-  const [baseUrl, setBaseUrl] = useState('https://fastgpt.io/api');
+  const [baseUrl, setBaseUrl] = useState('');
   const [editData, setEditData] = useState<EditProps>();
   const [apiKey, setApiKey] = useState('');
 
@@ -78,7 +79,12 @@ const ApiKeyTable = ({ tips, appId }: { tips: string; appId?: string }) => {
   });
 
   useEffect(() => {
-    setBaseUrl(feConfigs?.customApiDomain || `${location.origin}/api`);
+    setBaseUrl(
+      getApiBaseUrl({
+        customApiDomain: feConfigs?.customApiDomain,
+        origin: typeof location !== 'undefined' ? location.origin : undefined
+      })
+    );
   }, [feConfigs?.customApiDomain]);
 
   return (

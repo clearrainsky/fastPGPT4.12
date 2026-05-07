@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useMemo } from 'react';
+import { getDocsHomeDomain } from '@/lib/branding';
 
 type FastGPTLinkProps = {
   children: React.ReactNode;
@@ -22,7 +23,7 @@ const hoverStyles: React.CSSProperties = {
 
 const FastGPTLink = ({ children, className, style, onClick, ...props }: FastGPTLinkProps) => {
   const href = useMemo(() => {
-    return process.env.FASTGPT_HOME_DOMAIN ?? 'https://fastgpt.io';
+    return getDocsHomeDomain(process.env.FASTGPT_HOME_DOMAIN) || '/';
   }, []);
 
   const [isHovered, setIsHovered] = React.useState(false);

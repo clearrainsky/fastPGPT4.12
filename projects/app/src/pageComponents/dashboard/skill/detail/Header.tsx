@@ -147,12 +147,12 @@ const Header = () => {
               });
             }
           },
-          {
-            icon: 'key' as const,
-            type: 'grayBg' as const,
-            label: t('skill:permission_settings'),
-            onClick: () => setShowPermModal(true)
-          },
+          // {
+          //   icon: 'key' as const,
+          //   type: 'grayBg' as const,
+          //   label: t('skill:permission_settings'),
+          //   onClick: () => setShowPermModal(true)
+          // },
           {
             icon: 'export' as const,
             type: 'grayBg' as const,

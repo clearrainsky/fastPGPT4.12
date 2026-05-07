@@ -88,7 +88,7 @@ const DingTalkEditModal = ({
         <Flex p={8} h={['auto', '400px']} flexDirection="column" gap={6}>
           <Flex alignItems="center">
             <Box color="myGray.600">{t('publish:dingtalk.api')}</Box>
-            {feConfigs?.docUrl && (
+            {/* {feConfigs?.docUrl && (
               <Link
                 href={getDocPath('/docs/use-cases/external-integration/dingtalk/')}
                 target={'_blank'}
@@ -101,7 +101,7 @@ const DingTalkEditModal = ({
                   {t('common:read_doc')}
                 </Flex>
               </Link>
-            )}
+            )} */}
           </Flex>
           <Flex alignItems={'center'}>
             <FormLabel flex={'0 0 6.25rem'} required>

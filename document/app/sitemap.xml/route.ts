@@ -1,12 +1,18 @@
 import { source } from '@/lib/source';
 import { NextResponse } from 'next/server';
 import docLastModifiedData from '@/data/doc-last-modified.json';
+import { getDocsDomain } from '@/lib/branding';
 
 export const dynamic = 'force-static';
 
 export function GET() {
-  const homeDomain = process.env.FASTGPT_HOME_DOMAIN ?? 'https://fastgpt.io';
-  const domain = homeDomain.replace('https://', 'https://doc.');
+  const domain = getDocsDomain(process.env.FASTGPT_HOME_DOMAIN);
+
+  if (!domain) {
+    return new NextResponse('', {
+      headers: { 'Content-Type': 'application/xml; charset=utf-8' }
+    });
+  }
 
   const pages = source.getPages();
 
